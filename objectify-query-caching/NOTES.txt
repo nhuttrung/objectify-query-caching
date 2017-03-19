@@ -1,0 +1,23 @@
+ 
+* Memcache:
+For a {ENTITY KIND}, we use following Memcache
+- List of Caching query information
+  + Key: Constants.CACHING_KIND_PREFIX
+  + Value: List<QueryInfo>
+- For each of List<QueryInfo>, we use following Memcache to cache the query's result:
+  + Key: QueryInfo
+  + Value: List<ENTITY>   --> The cached result
+
+* Query:
+- Try to get the cached result from Memcache
+  + Found cached result --> Use this result
+  + Otherwise: querying the Datastore
+
+* Saving & Deleting entity/entities:
+- Delete Memcache key for each of List<QueryInfo>
+- Delete Memcache key Constants.CACHING_KIND_PREFIX
+
+*** TOOD ***
+- Transaction support
+  + Transaction is not tested yet.
+- Additional test cases
