@@ -17,7 +17,7 @@ public class TestController {
   public String testSetupTestEntities() throws Exception {
     setupTestEntities();
 
-    return "test-00";
+    return "test-01";
   }
 
   @RequestMapping(value="/test/01", method={RequestMethod.GET})
@@ -32,6 +32,27 @@ public class TestController {
   public String testQueryFilter() throws Exception {
     // Query with filter
     ofy().load().type(MyEntity.class).filter("num >", 5).list();
+    
+    return "test-01";
+  }
+
+  @RequestMapping(value="/test/03", method={RequestMethod.GET})
+  public String testDeleteEntity() throws Exception {
+    ofy().delete().type(MyEntity.class).id(9);
+    
+    return "test-01";
+  }
+
+  @RequestMapping(value="/test/04", method={RequestMethod.GET})
+  public String testSaveEntity() throws Exception {
+    ofy().save().entity(new MyEntity(1, "Item #" + 1, 1));
+    
+    return "test-01";
+  }
+
+  @RequestMapping(value="/test/05", method={RequestMethod.GET})
+  public String testQueryFirst() throws Exception {
+    ofy().load().type(MyEntity.class).filter("num", 5).first().now();
     
     return "test-01";
   }
