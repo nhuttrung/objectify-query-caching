@@ -1,0 +1,1 @@
+Example web app demonstrate how objectify-query-caching works
