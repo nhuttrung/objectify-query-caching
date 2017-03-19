@@ -31,6 +31,15 @@ public class CachingQueryImpl<T> extends QueryImpl<T> {
   }
   
   public List<T> list() {
+    // No cache --> do not use cache
+    if (!this.loader.ofy.cache){
+      return super.list();
+    }
+    // In a transaction context --> do not use cache
+    if (this.loader.ofy.getTransaction() != null){
+      return super.list();
+    }
+    
     QueryInfo<T> qi = new QueryInfo<T>(this);
     List<T> result = CachingUtils.getCachedResult(qi);
     if (result == null){

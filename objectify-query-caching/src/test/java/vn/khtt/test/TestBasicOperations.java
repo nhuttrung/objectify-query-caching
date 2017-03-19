@@ -93,6 +93,12 @@ public class TestBasicOperations extends BaseTestcases {
     ofy().load().type(MyEntity.class).first().now();
   }
 
+  @Test
+  public void testNoCaching() {
+    ofy().load().type(MyEntity.class).list();
+    ofy().cache(false).load().type(MyEntity.class).list();
+  }
+
   private MyEntity newEntity(int n){
     return new MyEntity(n, "Item #" + n, n);
   }
