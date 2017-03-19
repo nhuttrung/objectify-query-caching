@@ -1,5 +1,9 @@
 package com.googlecode.objectify.impl;
 
+import com.googlecode.objectify.LoadResult;
+
+import com.googlecode.objectify.Result;
+
 import java.util.List;
 
 public class CachingQueryImpl<T> extends QueryImpl<T> {
@@ -11,6 +15,21 @@ public class CachingQueryImpl<T> extends QueryImpl<T> {
     super(loader, kind, clazz);
   }
 
+  @Override
+  public LoadResult<T> first() {
+    Result<T> result = new Result<T>(){
+      @Override
+      public T now() {
+        List<T> list = CachingQueryImpl.this.list();
+        if (list.size() > 0){
+          return list.get(0);
+        }
+        return null;
+      }
+    };
+    return new LoadResult<>(null, result);
+  }
+  
   public List<T> list() {
     QueryInfo<T> qi = new QueryInfo<T>(this);
     List<T> result = CachingUtils.getCachedResult(qi);

@@ -6,7 +6,7 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cache.AsyncCacheFilter;
-import com.googlecode.objectify.impl.CachingObjectifyFactory;
+import com.googlecode.objectify.CachingObjectifyFactory;
 import com.googlecode.objectify.util.Closeable;
 
 import org.junit.After;

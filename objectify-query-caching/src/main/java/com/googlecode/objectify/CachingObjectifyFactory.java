@@ -1,7 +1,7 @@
-package com.googlecode.objectify.impl;
+package com.googlecode.objectify;
 
-import com.googlecode.objectify.Objectify;
-import com.googlecode.objectify.ObjectifyFactory;
+import com.googlecode.objectify.impl.CachingObjectifyImpl;
+
 
 public class CachingObjectifyFactory extends ObjectifyFactory {
   public CachingObjectifyFactory() {

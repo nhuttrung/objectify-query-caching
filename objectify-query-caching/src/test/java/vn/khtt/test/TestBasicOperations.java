@@ -86,6 +86,13 @@ public class TestBasicOperations extends BaseTestcases {
     */
   }
   
+  @Test
+  public void testQueryFirt() {
+    System.out.println(ofy().load().type(MyEntity.class).filter("num", 5).first().now());
+    System.out.println(ofy().load().type(MyEntity.class).filter("num", 5).first().now());
+    ofy().load().type(MyEntity.class).first().now();
+  }
+
   private MyEntity newEntity(int n){
     return new MyEntity(n, "Item #" + n, n);
   }
